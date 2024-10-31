@@ -27,4 +27,8 @@ public class VideoService {
     public Video findById(Long id) {
         return videoRepository.getReferenceById(id);
     }
+
+    public void deleteById(Long id) {
+        videoRepository.deleteById(id);
+    }
 }

@@ -37,4 +37,10 @@ public class VideoController {
         var video = videoService.findById(id);
         return ResponseEntity.ok().body(new DadosDetalhamentoVideo(video));
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        videoService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
