@@ -23,4 +23,8 @@ public class VideoService {
     public Page<DadosDetalhamentoVideo> findAllPageable(Pageable pageable) {
         return videoRepository.findAll(pageable).map(DadosDetalhamentoVideo::new);
     }
+
+    public Video findById(Long id) {
+        return videoRepository.getReferenceById(id);
+    }
 }

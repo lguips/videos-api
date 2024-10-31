@@ -31,4 +31,10 @@ public class VideoController {
         Page<DadosDetalhamentoVideo> page = videoService.findAllPageable(pageable);
         return ResponseEntity.ok(page);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<DadosDetalhamentoVideo> findById(@PathVariable Long id) {
+        var video = videoService.findById(id);
+        return ResponseEntity.ok().body(new DadosDetalhamentoVideo(video));
+    }
 }
