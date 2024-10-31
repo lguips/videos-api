@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import videos_api.videos.domain.video.DadosAtualizarVideo;
 import videos_api.videos.domain.video.DadosCadastroVideo;
 import videos_api.videos.domain.video.DadosDetalhamentoVideo;
 import videos_api.videos.domain.video.Video;
@@ -30,5 +31,11 @@ public class VideoService {
 
     public void deleteById(Long id) {
         videoRepository.deleteById(id);
+    }
+
+    public Video updateById(DadosAtualizarVideo dados) {
+        var video = videoRepository.getReferenceById(dados.id());
+        video.updateVideo(dados);
+        return video;
     }
 }

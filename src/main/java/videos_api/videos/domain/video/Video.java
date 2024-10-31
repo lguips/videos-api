@@ -25,4 +25,18 @@ public class Video {
         this.descricao = descricao;
         this.url = url;
     }
+
+    public void updateVideo(DadosAtualizarVideo dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+
+        if (dados.descricao() != null) {
+            this.descricao = dados.descricao();
+        }
+
+        if (dados.url() != null) {
+            this.url = dados.url();
+        }
+    }
 }

@@ -7,8 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import videos_api.videos.domain.video.DadosAtualizarVideo;
 import videos_api.videos.domain.video.DadosCadastroVideo;
 import videos_api.videos.domain.video.DadosDetalhamentoVideo;
 import videos_api.videos.services.VideoService;
@@ -45,5 +47,12 @@ public class VideoController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         videoService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    @PutMapping
+    public ResponseEntity<DadosDetalhamentoVideo> updateById(@RequestBody @Valid DadosAtualizarVideo dados) {
+        var video = videoService.updateById(dados);
+        return ResponseEntity.ok().body(new DadosDetalhamentoVideo(video));
     }
 }
